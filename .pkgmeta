@@ -1,0 +1,5 @@
+package-as: NiceDamage
+
+ignore:
+  - .gitignore
+  - .vscode
