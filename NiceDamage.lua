@@ -13,7 +13,7 @@ function addon:OnInitialize()
         },
         profile = {
             enabled = true,
-            fontName = "Pepsi",
+            fontName = "Pepsi Modern",
             fontSize = 1,
         }
     }, true)
