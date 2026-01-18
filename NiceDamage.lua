@@ -44,11 +44,6 @@ function addon:OnInitialize()
     self:ApplySystemFonts()
 end
 
--- Slash command handler
-function addon:OnChatCommand() 
-    self:OpenConfig() 
-end
-
 -- Opens the Blizzard Settings category for this addon
 function addon:OpenConfig()
     if Settings and Settings.OpenToCategory then
