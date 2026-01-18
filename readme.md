@@ -1,36 +1,53 @@
-# NiceDamage
+# NiceDamage (Reloaded)
 
-**NiceDamage** is a simple World of Warcraft addon that replaces the default combat text font with the **NiceDamage (Pepsi-style) font**.
+**NiceDamage (Reloaded)** is a lightweight combat text font addon for World of Warcraft that allows you to customize the font and size of damage and healing numbers displayed during combat.
 
-It gives your damage numbers a clean, classic look inspired by the old Pepsi-style combat text.
+It modernizes the classic "Pepsi" combat text style by adding a configuration menu, font scaling, and support for additional high-visibility fonts.
 
-## Important: Game Restart Required
+## ⚠️ Important: Application of Changes
+Due to the way the World of Warcraft engine loads 3D world text:
+* **Changing the Font:** Requires you to **Log Out** to the character selection screen and log back in. A `/reload` will NOT work.
+* **Changing the Size:** Takes effect **instantly** without needing to relog or reload.
 
-⚠️ **You must completely restart World of Warcraft for the font change to take effect.**  
-A `/reload` or UI reload **will NOT work**.
-
-This is a limitation of how WoW loads fonts.
+---
 
 ## Features
 
-- Replaces combat text with the NiceDamage (Pepsi) font
-- Lightweight and minimal
-- No configuration required
+* **Custom Font Selection:** Choose from a curated list of popular combat fonts including Pepsi, Bangers, Big Noodle Titling, Expressway, and more.
+* **Font Scaling:** Real-time adjustment of damage number sizes (from 0.5x to 2.5x).
+* **SharedMedia Support:** Automatically detects fonts from other addons installed in your game.
 
-## Installation
+---
 
-1. Download the addon
-2. **Fully restart the game (/reload doesn't work)**
-3. Enjoy the new combat text
+## Configuration
 
-## Notes
+Access the settings panel using either:
+*   `Escape` > `Options` > `Addons` > `NiceDamage (Reloaded)`.
 
-If the font does not appear:
-- Double-check the addon is enabled
-- Make sure you restarted the game, not just reloaded the UI
+---
 
+## Included Fonts
 
-## Original addon
+NiceDamage (Reloaded) comes bundled with the following popular combat fonts:
+* **Pepsi Modern / Cursive:** The classic look that started it all.
+* **Bangers:** A high-energy, comic-book style font.
+* **Big Noodle Titling:** A tall, bold font (famous for its use in Overwatch).
+* **Expressway:** A sharp, technical sans-serif font.
+* **Roboto Bold:** A clean, modern, and highly legible font.
+* **Die Die Die:** An aggressive, "scratched" font for high-impact crits.
+* **LifeCraft:** Modeled after the original WoW logo aesthetic.
 
-This addon has existed for a very long time. The last port was 4 years ago but is not being updated and can be found here
-- https://www.curseforge.com/wow/addons/nicedamage
+---
+
+## Troubleshooting
+
+* **Font hasn't changed:** You must log out to the character screen and log back in. The 3D engine cannot swap font files while you are inside the world.
+* **"I see the default font again:** This happens if you were using a font from another addon and that addon was deleted or disabled. This means that the font is not loaded into the game anymore and the game defaults to the standard font.
+* **Question Marks (???) for numbers:** This occurs on non-Latin clients (RU/CN/KR) if the selected font doesn't support those characters. Please select a universal font like *Roboto* or *Expressway*.
+
+---
+
+## Credits
+This is a modern "Reloaded" version maintained by **Azaiko**. 
+Original addon concept by the creators of the original NiceDamage.
+Inspired by the legacy of the Pepsi combat text style used by the WoW community for over a decade.
