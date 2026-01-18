@@ -29,4 +29,10 @@
 ## X-Wago-ID: jK8gXX6y
 ## X-WoWI-ID: 27010
 
+## SavedVariables: NiceDamageDBv1
+
+NiceDamage.xml
+
 NiceDamage.lua 
+Config.lua
+Fonts.lua

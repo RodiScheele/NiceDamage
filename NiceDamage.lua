@@ -1,20 +1,98 @@
+local addonName, addon = ...
+local LSM = LibStub("LibSharedMedia-3.0")
 
-NiceDamage = CreateFrame("Frame", "NiceDamage");
+-- Create the Ace3 Addon object
+LibStub("AceAddon-3.0"):NewAddon(addon, addonName, "AceEvent-3.0", "AceConsole-3.0")
 
-local damagefont_FONT_NUMBER = "Interface\\AddOns\\NiceDamage\\fonts\\PEPSI_Updated.ttf";
+function addon:OnInitialize()
+    -- Initialize the Database
+    -- Note: SavedVariables name must match the .toc file
+    self.db = LibStub("AceDB-3.0"):New(addonName .. "DBv1", {
+        global = { 
+            minimap = { hide = true } 
+        },
+        profile = {
+            enabled = true,
+            fontName = "Pepsi",
+            fontSize = 1,
+        }
+    }, true)
 
-function NiceDamage:ApplySystemFonts()
-	DAMAGE_TEXT_FONT = damagefont_FONT_NUMBER;
+    -- Register custom fonts with LibSharedMedia
+    self:RegisterFonts()
+
+    -- Create DataBroker object for Minimap/Addon Managers
+    self.ldb = LibStub("LibDataBroker-1.1"):NewDataObject(addonName, {
+        type = "launcher",
+        icon = "Interface\\Icons\\INV_Scroll_03",
+        label = addonName,
+        OnClick = function() self:OpenConfig() end,
+    })
+
+    -- Initialize Minimap Icon via LibDBIcon
+    self.icon = LibStub("LibDBIcon-1.0")
+    self.icon:Register(addonName, self.ldb, self.db.global.minimap)
+
+    -- Register the Options Table with AceConfig
+    LibStub("AceConfig-3.0"):RegisterOptionsTable(addonName, self:GetOptions())
+    
+    -- Add the options to the Blizzard Settings menu
+    local _, optionsId = LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addonName, addonName)
+    self.optionsId = optionsId
+
+    -- Register Slash Commands
+    self:RegisterChatCommand("nd", "OnChatCommand")
+    self:RegisterChatCommand("nicedamage", "OnChatCommand")
+    
+    -- Apply fonts immediately on load
+    self:ApplySystemFonts()
 end
 
-NiceDamage:SetScript("OnEvent",
-		    function() 
-		       if (event == "ADDON_LOADED") then
-			  NiceDamage:ApplySystemFonts()
-		       end
-		    end);
-NiceDamage:RegisterEvent("ADDON_LOADED");
+-- Slash command handler
+function addon:OnChatCommand() 
+    self:OpenConfig() 
+end
 
-NiceDamage:ApplySystemFonts();
+-- Opens the Blizzard Settings category for this addon
+function addon:OpenConfig()
+    if Settings and Settings.OpenToCategory then
+        Settings.OpenToCategory(self.optionsId)
+    end
+end
 
+-- Core logic for updating the game engine fonts
+function addon:ApplySystemFonts()
+    if not self.db.profile.enabled then return end
+    
+    local fontPath = LSM:Fetch("font", self.db.profile.fontName)
+    -- We convert our slider value (e.g., 1.2) to a string for the CVar
+    local sizeScale = tostring(self.db.profile.fontSize or 1)
+    
+    if fontPath then
+        -- 1. Set the font path
+        DAMAGE_TEXT_FONT = fontPath
+        
+        -- 2. Set the Global Scale (This is what actually changes the size in the world)
+        if GetCVar("WorldTextScale") then
+            SetCVar("WorldTextScale", sizeScale)
+        end
+        
+        -- 3. Update the objects (for fallback/UI elements)
+        local fonts = { CombatTextFont, DamageNumberFont, WorldFont }
+        for _, fontObj in ipairs(fonts) do
+            if fontObj then
+                -- Note: We use a base size of 18 multiplied by the scale for the object fallback
+                fontObj:SetFont(fontPath, 18, "OUTLINE")
+            end
+        end
+    end
+end
 
+-- Toggles visibility of the Minimap button
+function addon:UpdateMinimapIcon()
+    if self.db.global.minimap.hide then
+        self.icon:Hide(addonName)
+    else
+        self.icon:Show(addonName)
+    end
+end
