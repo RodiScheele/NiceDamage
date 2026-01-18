@@ -1,3 +1,7 @@
+2.0.0
+- Added functionality to change fonts
+- Added extra custom fonts
+
 1.1.1
 - Added pkgmeta to ignore git files. Moved fonts into fonts folder.
 

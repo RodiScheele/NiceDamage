@@ -3,7 +3,7 @@ local LSM = LibStub("LibSharedMedia-3.0")
 
 function addon:GetOptions()
     return {
-        name = addonName,
+        name = "NiceDamage (Reloaded)",
         type = "group",
         args = {
             settings = {

@@ -1,8 +1,8 @@
-local addonName, addon = ...
+local addonName, addon, categoryId, frame = ...
 local LSM = LibStub("LibSharedMedia-3.0")
 
 -- Create the Ace3 Addon object
-LibStub("AceAddon-3.0"):NewAddon(addon, addonName, "AceEvent-3.0", "AceConsole-3.0")
+LibStub("AceAddon-3.0"):NewAddon(addon, addonName, "AceEvent-3.0")
 
 function addon:OnInitialize()
     -- Initialize the Database
@@ -25,7 +25,7 @@ function addon:OnInitialize()
     self.ldb = LibStub("LibDataBroker-1.1"):NewDataObject(addonName, {
         type = "launcher",
         icon = "Interface\\Icons\\INV_Scroll_03",
-        label = addonName,
+        label = "NiceDamage (Reloaded)",
         OnClick = function() self:OpenConfig() end,
     })
 
@@ -37,12 +37,8 @@ function addon:OnInitialize()
     LibStub("AceConfig-3.0"):RegisterOptionsTable(addonName, self:GetOptions())
     
     -- Add the options to the Blizzard Settings menu
-    local _, optionsId = LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addonName, addonName)
-    self.optionsId = optionsId
-
-    -- Register Slash Commands
-    self:RegisterChatCommand("nd", "OnChatCommand")
-    self:RegisterChatCommand("nicedamage", "OnChatCommand")
+    -- We use the full name here for the display label in the menu
+    frame, categoryId = LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addonName, "NiceDamage (Reloaded)", nil)
     
     -- Apply fonts immediately on load
     self:ApplySystemFonts()
@@ -56,7 +52,7 @@ end
 -- Opens the Blizzard Settings category for this addon
 function addon:OpenConfig()
     if Settings and Settings.OpenToCategory then
-        Settings.OpenToCategory(self.optionsId)
+        Settings.OpenToCategory(categoryId)
     end
 end
 
@@ -65,23 +61,21 @@ function addon:ApplySystemFonts()
     if not self.db.profile.enabled then return end
     
     local fontPath = LSM:Fetch("font", self.db.profile.fontName)
-    -- We convert our slider value (e.g., 1.2) to a string for the CVar
     local sizeScale = tostring(self.db.profile.fontSize or 1)
     
     if fontPath then
-        -- 1. Set the font path
+        -- 1. Set the global path variable for the 3D engine
         DAMAGE_TEXT_FONT = fontPath
         
-        -- 2. Set the Global Scale (This is what actually changes the size in the world)
+        -- 2. Set the Global Scale (Real-time update for world numbers)
         if GetCVar("WorldTextScale") then
             SetCVar("WorldTextScale", sizeScale)
         end
         
-        -- 3. Update the objects (for fallback/UI elements)
+        -- 3. Update the font objects
         local fonts = { CombatTextFont, DamageNumberFont, WorldFont }
         for _, fontObj in ipairs(fonts) do
             if fontObj then
-                -- Note: We use a base size of 18 multiplied by the scale for the object fallback
                 fontObj:SetFont(fontPath, 18, "OUTLINE")
             end
         end
