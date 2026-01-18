@@ -43,6 +43,9 @@ NiceDamage (Reloaded) comes bundled with the following popular combat fonts:
 
 * **Font hasn't changed:** You must log out to the character screen and log back in. The 3D engine cannot swap font files while you are inside the world.
 * **"I see the default font again:** This happens if you were using a font from another addon and that addon was deleted or disabled. This means that the font is not loaded into the game anymore and the game defaults to the standard font.
+* **I have issues with ElvUI:** In World of Warcraft the last addon to load will apply it's changes. ElvUI is causing issues here as it is loading later than NiceDamage. To resolve this there are two options (**Note that you will have to log out and in to make this work**):
+    * Disable ELvUI "CombatText Font"
+    * Keep the NiceDamage addon enabled (to have access to the font) and change the combat font within ElvUI to "Pepsi Modern"
 * **Question Marks (???) for numbers:** This occurs on non-Latin clients (RU/CN/KR) if the selected font doesn't support those characters. Please select a universal font like *Roboto* or *Expressway*.
 
 ---
