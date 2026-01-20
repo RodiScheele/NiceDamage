@@ -15,8 +15,8 @@ function addon:OnInitialize()
             enabled = true,
             fontName = "Pepsi Modern",
             fontSize = 1,
-            updateWorldText = true,
-            updateUiText = false,
+            updateWorldText = true, -- Combat Damage Number Font
+            updateUiText = false,   -- Scrolling Combat Text Font
         }
     }, true)
 
