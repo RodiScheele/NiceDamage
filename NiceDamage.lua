@@ -15,6 +15,8 @@ function addon:OnInitialize()
             enabled = true,
             fontName = "Pepsi Modern",
             fontSize = 1,
+            updateWorldText = true,
+            updateUiText = false,
         }
     }, true)
 
@@ -59,19 +61,21 @@ function addon:ApplySystemFonts()
     local sizeScale = tostring(self.db.profile.fontSize or 1)
     
     if fontPath then
-        -- 1. Set the global path variable for the 3D engine
-        DAMAGE_TEXT_FONT = fontPath
-        
-        -- 2. Set the Global Scale (Real-time update for world numbers)
-        if GetCVar("WorldTextScale") then
-            SetCVar("WorldTextScale", sizeScale)
+        -- 1. WORLD TEXT (Damage/Healing numbers floating in the 3D world)
+        if self.db.profile.updateWorldText then
+            DAMAGE_TEXT_FONT = fontPath
+            if GetCVar("WorldTextScale") then
+                SetCVar("WorldTextScale", sizeScale)
+            end
         end
         
-        -- 3. Update the font objects
-        local fonts = { CombatTextFont, DamageNumberFont, WorldFont }
-        for _, fontObj in ipairs(fonts) do
-            if fontObj then
-                fontObj:SetFont(fontPath, 18, "OUTLINE")
+        -- 2. UI TEXT (Damage received, scrolling combat text on player frame)
+        if self.db.profile.updateUiText then
+            local fonts = { CombatTextFont, DamageNumberFont, WorldFont }
+            for _, fontObj in ipairs(fonts) do
+                if fontObj then
+                    fontObj:SetFont(fontPath, 18, "OUTLINE")
+                end
             end
         end
     end

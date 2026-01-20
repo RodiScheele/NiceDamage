@@ -1,3 +1,6 @@
+2.1.0
+- Added checkboxes for combat damage font and scrolling combat text
+
 2.0.0
 - Added functionality to change fonts
 - Added extra custom fonts

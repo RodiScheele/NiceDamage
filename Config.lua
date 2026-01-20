@@ -36,6 +36,36 @@ function addon:GetOptions()
                     },
                 }
             },
+            targets = {
+                name = "Text to update",
+                type = "group",
+                inline = true,
+                order = 2,
+                args = {
+                    world = {
+                        type = "toggle",
+                        name = "Combat Damage",
+                        desc = "Apply font to damage and healing numbers floating over units. |cFFFF0000(Requires Log Out)|r",
+                        get = function() return self.db.profile.updateWorldText end,
+                        set = function(_, v) 
+                            self.db.profile.updateWorldText = v
+                            self:ApplySystemFonts() 
+                        end,
+                        order = 1,
+                    },
+                    ui = {
+                        type = "toggle",
+                        name = "Scrolling Combat Text",
+                        desc = "Apply font to damage you receive and scrolling combat text.",
+                        get = function() return self.db.profile.updateUiText end,
+                        set = function(_, v) 
+                            self.db.profile.updateUiText = v
+                            self:ApplySystemFonts() 
+                        end,
+                        order = 2,
+                    },
+                }
+            },
             fontGroup = {
                 name = "Font Appearance",
                 type = "group",
