@@ -1,3 +1,6 @@
+2.1.1
+- Added Ginko font
+
 2.1.0
 - Added checkboxes for combat damage font and scrolling combat text
 
