@@ -4,6 +4,8 @@
 
 It modernizes the classic "Pepsi" combat text style by adding a configuration menu, font scaling, and support for additional high-visibility fonts.
 
+---
+
 ## ⚠️ Important: Application of Changes
 Due to the way the World of Warcraft engine loads 3D world text:
 * **Changing the Font:** Requires you to **Log Out** to the character selection screen and log back in. A `/reload` will NOT work.
@@ -21,8 +23,8 @@ Due to the way the World of Warcraft engine loads 3D world text:
 
 ## Configuration
 
-Access the settings panel using either:
-*   `Escape` > `Options` > `Addons` > `NiceDamage (Reloaded)`.
+Access the settings panel using:
+* `Escape` > `Options` > `Addons` > `NiceDamage (Reloaded)`.
 
 ---
 
@@ -39,13 +41,37 @@ NiceDamage (Reloaded) comes bundled with the following popular combat fonts:
 
 ---
 
+## Installing Your Own Fonts
+**NiceDamage** uses a library called `LibSharedMedia-3.0`. Think of this as a "media folder" that many WoW addons share. 
+
+* If you have **Details!**, **WeakAuras**, or **ElvUI** installed, NiceDamage can "borrow" the fonts they provide.
+* If you disable an addon that was providing a specific font, that font disappears from the library. NiceDamage will detect this and default back to the standard font to ensure your damage numbers remain visible.
+
+### Option 1: Using the SharedMedia Addon (Recommended)
+If you have a specific `.ttf` or `.otf` font file you want to use, the most stable way to add it is using the [SharedMedia](https://www.curseforge.com/wow/addons/sharedmedia) addon. 
+
+1. Install the **SharedMedia** addon.
+2. Follow the instructions provided in the `SharedMedia_MyMedia` folder within your AddOns directory to register your custom fonts.
+3. Once registered, your custom font will automatically appear in the NiceDamage selection menu. **This font will remain and will not be deleted when you update NiceDamage.**
+
+### Option 2: Replacing a Built-in Font (The Quick Fix)
+If you don't want to install extra addons, you can "swap" one of the default NiceDamage fonts for your own. **Note that updating the addon will overwrite your changes so you would have to do this every update.**
+
+1. Navigate to `_retail_/Interface/AddOns/NiceDamage/fonts/`.
+2. Choose a font you don't plan on using (e.g., `Bangers.ttf`).
+3. Delete that file, then paste your custom font file into the folder.
+4. **Rename your custom font** to exactly match the one you deleted (e.g., rename your new font to `Bangers.ttf`).
+5. Restart the game. In the NiceDamage settings, selecting "Bangers" will now display your custom font.
+
+---
+
 ## Troubleshooting
 
 * **Font hasn't changed:** You must log out to the character screen and log back in. The 3D engine cannot swap font files while you are inside the world.
-* **"I see the default font again:** This happens if you were using a font from another addon and that addon was deleted or disabled. This means that the font is not loaded into the game anymore and the game defaults to the standard font.
-* **I have issues with ElvUI:** In World of Warcraft the last addon to load will apply it's changes. ElvUI is causing issues here as it is loading later than NiceDamage. To resolve this there are two options (**Note that you will have to log out and in to make this work**):
-    * Disable ELvUI "CombatText Font"
-    * Keep the NiceDamage addon enabled (to have access to the font) and change the combat font within ElvUI to "Pepsi Modern"
+* **I see the default font again:** This happens if you were using a font from another addon and that addon was deleted or disabled.
+* **I have issues with ElvUI:** In World of Warcraft, the last addon to load applies its changes. ElvUI often overwrites NiceDamage. To resolve this:
+    * **Option A:** Disable ElvUI's "CombatText Font" in the ElvUI settings.
+    * **Option B:** Keep NiceDamage enabled (to load the font) and manually select "Pepsi Modern" within ElvUI's own combat text settings.
 * **Question Marks (???) for numbers:** This occurs on non-Latin clients (RU/CN/KR) if the selected font doesn't support those characters. Please select a universal font like *Roboto* or *Expressway*.
 
 ---
