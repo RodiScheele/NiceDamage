@@ -13,6 +13,9 @@ local myFonts = {
     ["Die Die Die"] = "DIEDIEDI.ttf",
     ["LifeCraft"] = "LifeCraft_Font.ttf",
     ["Ginko"] = "Ginko.ttf",
+    ["Gotham Narrow Ultra"] = "Gotham Narrow Ultra.otf",
+    ["Yikes"] = "yikes.ttf",
+    ["Denmark"] = "Denmark.ttf",
 }
 
 function addon:RegisterFonts()

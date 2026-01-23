@@ -1,3 +1,6 @@
+2.1.2
+- Added Denmark, Gotham Narrow Ultra and yikes fonts
+
 2.1.1
 - Added Ginko font
 
