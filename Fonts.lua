@@ -11,7 +11,8 @@ local myFonts = {
     ["Roboto Bold"] = "Roboto-Bold.ttf",
     ["Big Noodle Titling"] = "bignoodletitling.ttf",
     ["Die Die Die"] = "DIEDIEDI.ttf",
-    ["LifeCraft"] = "LifeCraft_Font.ttf"
+    ["LifeCraft"] = "LifeCraft_Font.ttf",
+    ["Ginko"] = "Ginko.ttf",
 }
 
 function addon:RegisterFonts()
