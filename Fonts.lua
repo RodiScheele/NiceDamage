@@ -18,6 +18,7 @@ local myFonts = {
     ["Yikes"]                = { file = "yikes.ttf",             cyrillic = false },
     ["Denmark"]              = { file = "Denmark.ttf",           cyrillic = false },
     ["Zero Cool"]            = { file = "ZeroCool.ttf",          cyrillic = true },
+    ["Custom Font NDR"]      = { file = "customfontndr.ttf",     cyrillic = true },
 }
 
 function addon:RegisterFonts()
