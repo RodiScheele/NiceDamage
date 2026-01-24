@@ -1,3 +1,7 @@
+2.1.3
+- Updated readme with how to add your own fonts
+- Added an ! to the toc to avoid loading issues (addon should load as one of the last)
+
 2.1.2
 - Added Denmark, Gotham Narrow Ultra and yikes fonts
 
