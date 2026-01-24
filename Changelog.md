@@ -1,3 +1,7 @@
+2.2.0
+- Added Russian, Korean and Chinese support
+- Adds the Zero Cool font as a default for Russian players
+
 2.1.3
 - Updated readme with how to add your own fonts
 
