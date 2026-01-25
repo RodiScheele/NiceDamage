@@ -181,6 +181,18 @@ function addon:GetOptions()
                         end,
                         order = 4,
                     },
+                    uiShadowOffset = {
+                        type = "range",
+                        name = "Shadow Offset",
+                        desc = "Set the distance of the font shadow. 0 is off.",
+                        min = 0, max = 10, step = 1,
+                        get = function() return self.db.profile.uiShadowOffset end,
+                        set = function(_, v) 
+                            self.db.profile.uiShadowOffset = v
+                            self:ApplySystemFonts() 
+                        end,
+                        order = 5,
+                    },
                 }
             }
         }

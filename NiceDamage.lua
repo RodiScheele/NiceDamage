@@ -31,6 +31,7 @@ function addon:OnInitialize()
             uiFontSize = 18,
             uiOutline = "OUTLINE",
             uiMonochrome = false,
+            uiShadowOffset = 1,
         }
     }, true)
 
@@ -59,7 +60,7 @@ function addon:OnInitialize()
     -- Add the options to the Blizzard Settings menu
     -- We use the full name here for the display label in the menu
     frame, categoryId = LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addonName, "NiceDamage (Reloaded)", nil)
-    
+
     -- Apply fonts immediately on load
     self:ApplySystemFonts()
 end
@@ -107,6 +108,9 @@ function addon:ApplySystemFonts()
                 for _, fontObj in ipairs(fonts) do
                     if fontObj then
                         fontObj:SetFont(uiFontPath, self.db.profile.uiFontSize, flags)
+                        local off = self.db.profile.uiShadowOffset or 1
+                        fontObj:SetShadowOffset(off, -off)
+                        fontObj:SetShadowColor(0, 0, 0, 1) -- Black shadow
                     end
                 end
             end
