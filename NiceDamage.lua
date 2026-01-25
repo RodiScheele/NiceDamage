@@ -26,6 +26,7 @@ function addon:OnInitialize()
             fontName = defaultFont,
             fontSize = 1,
             fontGravity = 0.5,
+            fontRampDuration = 1.0,
             -- Floating text font
             updateUiText = false,   -- Scrolling Combat Text Font
             uiFont = defaultFont,
@@ -86,6 +87,8 @@ function addon:ApplySystemFonts()
             SetCVar("WorldTextScale", sizeScale)
             -- Apply the gravity setting from the database
             SetCVar("WorldTextGravity", tostring(self.db.profile.fontGravity or 0.5))
+            SetCVar("WorldTextRampDuration", tostring(self.db.profile.fontRampDuration or 1.0))
+            s
         end
                 
         -- 2. UI TEXT (Damage received, scrolling combat text on player frame)

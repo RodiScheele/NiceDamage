@@ -133,6 +133,18 @@ function addon:GetOptions()
                         end,
                         order = 4,
                     },
+                    fontRampDuration = {
+                        type = "range",
+                        name = "Combat Text Ramp Duration",
+                        desc = "Controls how long damage numbers stay visible. 1.0 is default.",
+                        min = 0.1, max = 3.0, step = 0.01,
+                        get = function() return self.db.profile.fontRampDuration end,
+                        set = function(_, v) 
+                            self.db.profile.fontRampDuration = v
+                            self:ApplySystemFonts() 
+                        end,
+                        order = 5,
+                    },
                 },
             },
             uiFontGroup = {
