@@ -53,8 +53,9 @@ If you don't want to install extra addons, you can add one single TTF font to Ni
 2. Choose a font you don't plan on using (e.g., `Bangers.ttf`).
 3. Put the `.ttf` file inside the folder.
 4. Rename the filename to `customfontndr.ttf` (exactly like that, case-sensitive).
-5. Restart the game. In the NiceDamage settings, selecting "Custom Font NDR" will now display your custom font.
-6. Updates to the addon will NOT overwrite your custom font.
+5. Ingame, check the box "Load Custom Font" in the NiceDamage settings.
+6. Relog to the character selection screen and log back in. In the NiceDamage settings, selecting "Custom Font NDR" will now display your custom font.
+7. Updates to the addon will NOT overwrite your custom font.
 
 ### Option 2: Using the SharedMedia Addon
 If you have a specific `.ttf` or `.otf` font file you want to use, or install multiple font files, the most stable way to add it is using the [SharedMedia](https://www.curseforge.com/wow/addons/sharedmedia) addon. 
