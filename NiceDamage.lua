@@ -106,7 +106,7 @@ function addon:ApplySystemFonts()
                 local fonts = { CombatTextFont, DamageNumberFont, WorldFont }
                 for _, fontObj in ipairs(fonts) do
                     if fontObj then
-                        fontObj:SetFont(uiFontPath, self.db.profile.uiFontSize, flags)
+                        fontObj:SetFont(uiFontPath, 16 ,flags)
                         local off = self.db.profile.uiShadowOffset or 1
                         fontObj:SetShadowOffset(off, -off)
                         fontObj:SetShadowColor(0, 0, 0, 1) -- Black shadow
