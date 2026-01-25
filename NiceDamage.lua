@@ -88,7 +88,6 @@ function addon:ApplySystemFonts()
             -- Apply the gravity setting from the database
             SetCVar("WorldTextGravity", tostring(self.db.profile.fontGravity or 0.5))
             SetCVar("WorldTextRampDuration", tostring(self.db.profile.fontRampDuration or 1.0))
-            s
         end
                 
         -- 2. UI TEXT (Damage received, scrolling combat text on player frame)
