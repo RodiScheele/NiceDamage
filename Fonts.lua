@@ -25,8 +25,6 @@ function addon:RegisterFonts()
     local prefix = "Interface\\AddOns\\NiceDamage\\fonts\\"
     local isRussian = (GetLocale() == "ruRU")
 
-    -- Define the mask for all locales + Western
-    -- This ensures the fonts actually show up in the LSM list for non-English clients
     local mask = (LSM.LOCALE_BIT_koKR or 1) + 
                  (LSM.LOCALE_BIT_ruRU or 2) + 
                  (LSM.LOCALE_BIT_zhCN or 4) + 
@@ -34,13 +32,20 @@ function addon:RegisterFonts()
                  (LSM.LOCALE_BIT_western or 128)
 
     for name, data in pairs(myFonts) do
-        local displayName = name
-        
-        -- If player is on Russian client and the font doesn't support it, tag the name
-        if isRussian and not data.cyrillic then
-            displayName = name .. " |cff888888[Latin]|r"
+        -- Check if this is the custom font and if it should be loaded
+        local shouldLoad = true
+        if name == "Custom Font NDR" and not self.db.profile.loadCustomFont then
+            shouldLoad = false
         end
 
-        LSM:Register("font", displayName, prefix .. data.file, mask)
+        if shouldLoad then
+            local displayName = name
+            
+            if isRussian and not data.cyrillic then
+                displayName = name .. " |cff888888[Latin]|r"
+            end
+
+            LSM:Register("font", displayName, prefix .. data.file, mask)
+        end
     end
 end

@@ -34,6 +34,24 @@ function addon:GetOptions()
                         end,
                         order = 2,
                     },
+                    loadCustom = {
+                        type = "toggle",
+                        name = "Load Custom Font",
+                        desc = "Load and auto-select 'Custom Font NDR'. |cFFFF0000(Requires you to log out and in to see in list)|r",
+                        get = function() return self.db.profile.loadCustomFont end,
+                        set = function(_, v) 
+                            self.db.profile.loadCustomFont = v
+                            if v then
+                                self.db.profile.fontName = "Custom Font NDR"
+                                self.db.profile.uiFont = "Custom Font NDR"
+                            else
+                                self.db.profile.fontName = "Pepsi Modern"
+                                self.db.profile.uiFont = "Pepsi Modern"
+                            end
+                            self:ApplySystemFonts()
+                        end,
+                        order = 3,
+                    },
                 }
             },
             targets = {
@@ -66,22 +84,22 @@ function addon:GetOptions()
                     },
                 }
             },
-            fontGroup = {
-                name = "Font Appearance",
+            worldFontGroup = {
+                name = "Combat Damage Appearance",
                 type = "group",
                 inline = true,
-                order = 2,
+                order = 3,
                 args = {
                     warning = {
                         type = "description",
-                        name = "|cFFFF0000Important:|r Changing the Combat Font requires you to Log Out and back in to apply the change. A /reload will not work.",
+                        name = "|cFFFF0000Important:|r Changing the Combat Font requires you to Log Out. Size changes apply instantly.",
                         order = 1,
                         fontSize = "medium",
                     },
-                    font = {
+                    worldFont = {
                         type = "select",
-                        name = "Combat Font",
-                        desc = "Select the font to use for world damage and healing numbers.",
+                        name = "Combat Damage Font",
+                        desc = "Select the font for damage dealt to enemies.",
                         dialogControl = 'LSM30_Font',
                         values = LSM:HashTable("font"),
                         get = function() return self.db.profile.fontName end,
@@ -93,18 +111,75 @@ function addon:GetOptions()
                     },
                     fontSize = {
                         type = "range",
-                        name = "Font Size Scale",
-                        desc = "Adjust the scale of the combat text. 1.0 is default, 2.0 is double size.",
-                        min = 0.5,
-                        max = 2.5,
-                        step = 0.1,
-                        isPercent = false,
+                        name = "Combat Damage Scale (World)",
+                        desc = "Adjust the scale of numbers over heads. 1.0 is default.",
+                        min = 0.5, max = 2.5, step = 0.1,
                         get = function() return self.db.profile.fontSize end,
                         set = function(_, v) 
                             self.db.profile.fontSize = v
                             self:ApplySystemFonts() 
                         end,
                         order = 3,
+                    },
+                },
+            },
+            uiFontGroup = {
+                name = "Scrolling Combat Text Appearance",
+                type = "group",
+                inline = true,
+                order = 4,
+                args = {
+                    uiFont = {
+                        type = "select",
+                        name = "Scrolling Combat Font",
+                        desc = "Select the font for incoming damage/heals.",
+                        dialogControl = 'LSM30_Font',
+                        values = LSM:HashTable("font"),
+                        get = function() return self.db.profile.uiFont end,
+                        set = function(_, v) 
+                            self.db.profile.uiFont = v
+                            self:ApplySystemFonts() 
+                        end,
+                        order = 1,
+                    },
+                    fontOutline = {
+                        type = "select",
+                        name = "Font Outline",
+                        desc = "Set the outline style for the scrolling text.",
+                        values = {
+                            [""] = "None",
+                            ["OUTLINE"] = "Thin Outline",
+                            ["THICKOUTLINE"] = "Thick Outline",
+                        },
+                        get = function() return self.db.profile.uiOutline or "OUTLINE" end,
+                        set = function(_, v) 
+                            self.db.profile.uiOutline = v
+                            self:ApplySystemFonts() 
+                        end,
+                        order = 2,
+                    },
+                    uiFontSize = {
+                        type = "range",
+                        name = "Scrolling Text Size (UI)",
+                        desc = "Adjust the pixel size of incoming damage/heals.",
+                        min = 10, max = 50, step = 1,
+                        get = function() return self.db.profile.uiFontSize end,
+                        set = function(_, v) 
+                            self.db.profile.uiFontSize = v
+                            self:ApplySystemFonts() 
+                        end,
+                        order = 3,
+                    },
+                    uiMonochrome = {
+                        type = "toggle",
+                        name = "Monochrome",
+                        desc = "Disable anti-aliasing (removes font smoothing). Best for pixel fonts.",
+                        get = function() return self.db.profile.uiMonochrome end,
+                        set = function(_, v) 
+                            self.db.profile.uiMonochrome = v
+                            self:ApplySystemFonts() 
+                        end,
+                        order = 4,
                     },
                 }
             }

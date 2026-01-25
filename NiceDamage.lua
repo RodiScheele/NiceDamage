@@ -20,10 +20,17 @@ function addon:OnInitialize()
         },
         profile = {
             enabled = true,
+            loadCustomFont = false,
+            -- Combat font
+            updateWorldText = true, -- Combat Damage Number Font
             fontName = defaultFont,
             fontSize = 1,
-            updateWorldText = true, -- Combat Damage Number Font
+            -- Floating text font
             updateUiText = false,   -- Scrolling Combat Text Font
+            uiFont = defaultFont,
+            uiFontSize = 18,
+            uiOutline = "OUTLINE",
+            uiMonochrome = false,
         }
     }, true)
 
@@ -35,6 +42,10 @@ function addon:OnInitialize()
         type = "launcher",
         icon = "Interface\\Icons\\INV_Scroll_03",
         label = "NiceDamage (Reloaded)",
+        OnTooltipShow = function(tooltip)
+            tooltip:AddLine("NiceDamage (Reloaded)")
+            tooltip:AddLine("|cff888888Click to open settings|r")
+        end,
         OnClick = function() self:OpenConfig() end,
     })
 
@@ -78,10 +89,25 @@ function addon:ApplySystemFonts()
         
         -- 2. UI TEXT (Damage received, scrolling combat text on player frame)
         if self.db.profile.updateUiText then
-            local fonts = { CombatTextFont, DamageNumberFont, WorldFont }
-            for _, fontObj in ipairs(fonts) do
-                if fontObj then
-                    fontObj:SetFont(fontPath, 18, "OUTLINE")
+
+            -- Combine flags
+            local flags = self.db.profile.uiOutline or ""
+            if self.db.profile.uiMonochrome then
+                if flags == "" then
+                    flags = "MONOCHROME"
+                else
+                    flags = flags .. ", MONOCHROME"
+                end
+            end
+
+            -- Fetch the specific UI font path
+            local uiFontPath = LSM:Fetch("font", self.db.profile.uiFont)
+            if uiFontPath then
+                local fonts = { CombatTextFont, DamageNumberFont, WorldFont }
+                for _, fontObj in ipairs(fonts) do
+                    if fontObj then
+                        fontObj:SetFont(uiFontPath, self.db.profile.uiFontSize, flags)
+                    end
                 end
             end
         end
