@@ -1,22 +1,23 @@
 # NiceDamage (Reloaded)
 
-**NiceDamage (Reloaded)** is a lightweight combat text font addon for World of Warcraft that allows you to customize the font and size of damage and healing numbers displayed during combat.
+**NiceDamage (Reloaded)** is a lightweight combat text font addon for World of Warcraft that allows you to customize the appearance, size, and animation behavior of damage and healing numbers.
 
-It modernizes the classic "Pepsi" combat text style by adding a configuration menu, font scaling, and support for additional high-visibility fonts.
+It modernizes the classic "Pepsi" combat text style by adding a configuration menu, real-time CVar scaling, and support for high-visibility fonts and custom animations.
 
 ---
 
 ## ⚠️ Important: Application of Changes
-Due to the way the World of Warcraft engine loads 3D world text:
-* **Changing the Font:** Requires you to **Log Out** to the character selection screen and log back in. A `/reload` will NOT work.
-* **Changing the Size:** Takes effect **instantly** without needing to relog or reload.
+Due to how the World of Warcraft engine handles 3D world text:
+* **Changing the Font File:** Requires you to **Log Out** to the character selection screen and log back in. A `/reload` will NOT work for the initial font load.
+* **Changing Size, Gravity, or Duration:** Takes effect **instantly** without needing to relog or reload.
 
 ---
 
 ## Features
 
-* **Custom Font Selection:** Choose from a curated list of popular combat fonts including Pepsi, Bangers, Big Noodle Titling, Expressway, and more.
+* **Custom Font Selection:** Choose from a curated list of popular combat fonts including Pepsi, Bangers, Big Noodle Titling, and Expressway.
 * **Font Scaling:** Real-time adjustment of damage number sizes.
+* **Animation Control:** Fine-tune the "physics" of your combat text by adjusting **Gravity** (how fast numbers fall) and **Ramp Duration** (how long they stay on screen).
 * **SharedMedia Support:** Automatically detects fonts from other addons installed in your game.
 
 ---
@@ -25,59 +26,49 @@ Due to the way the World of Warcraft engine loads 3D world text:
 
 Access the settings panel using:
 * `Escape` > `Options` > `Addons` > `NiceDamage (Reloaded)`.
+* Type `/nicedamage` or `/nd` ingame.
 
 ---
 
 ## Included Fonts
 
-**NiceDamage (Reloaded)** comes bundled with a curated selection of popular combat fonts.
+**NiceDamage (Reloaded)** comes bundled with a curated selection of fonts:
 
-* **Pepsi Modern:** The classic look that started it all. (Default)
-* **Pepsi Cursive:** A cursive variant of the classic Pepsi font.
+* **Pepsi Modern:** The classic look (Default for Western clients).
 * **Zero Cool:** A bold, high-energy font (Default for RU clients).
-
-Others fonts included are: Bangers, Big Noodle Titling, Expressway, Roboto Bold, Pf Tempesta Seven, Prototype, Die Die Die, LifeCraft, Gotham Narrow Ultra, Yikes, Ginko, Denmark.
+* **Pepsi Cursive:** A stylized cursive variant.
+* **Technical/Pixel Fonts:** Pf Tempesta Seven, Prototype, Expressway.
+* **Thematic Fonts:** Die Die Die, LifeCraft, Big Noodle Titling.
 
 ---
 
 ## Installing Your Own Fonts
-**NiceDamage** uses a library called `LibSharedMedia-3.0`. Think of this as a "media folder" that many WoW addons share. 
 
-* If you have **Details!**, **WeakAuras**, or **ElvUI** installed, NiceDamage can "borrow" the fonts they provide.
-* If you disable an addon that was providing a specific font, that font disappears from the library. NiceDamage will detect this and default back to the standard font to ensure your damage numbers remain visible.
+### Option 1: The "Custom Font NDR" Toggle
+If you want to use a specific `.ttf` file without installing other addons:
 
-### Option 1: Inside the addon
-If you don't want to install extra addons, you can add one single TTF font to NiceDamage. Note that an .OTF font doesn't work, only a .TTF font will work.
-
-1. Navigate to `wow/_retail_/Interface/AddOns/NiceDamage/fonts/`.
-2. Choose a font you don't plan on using (e.g., `Bangers.ttf`).
-3. Put the `.ttf` file inside the folder.
-4. Rename the filename to `customfontndr.ttf` (exactly like that, case-sensitive).
-5. Ingame, check the box "Load Custom Font" in the NiceDamage settings.
-6. Relog to the character selection screen and log back in. In the NiceDamage settings, selecting "Custom Font NDR" will now display your custom font.
-7. Updates to the addon will NOT overwrite your custom font.
+1. Navigate to `_retail_/Interface/AddOns/NiceDamage/fonts/`.
+2. Place your desired font file in this folder and rename it to `customfontndr.ttf`.
+3. In-game, open the settings and check **"Load Custom Font"**.
+4. **Log out** to the character screen and log back in.
+5. Select **"Custom Font NDR"** from the font dropdown menu.
 
 ### Option 2: Using the SharedMedia Addon
-If you have a specific `.ttf` or `.otf` font file you want to use, or install multiple font files, the most stable way to add it is using the [SharedMedia](https://www.curseforge.com/wow/addons/sharedmedia) addon. 
-
-1. Install the **SharedMedia** addon.
-2. Follow the instructions provided in the `SharedMedia_MyMedia` folder within your AddOns directory to register your custom fonts.
-3. Once registered, your custom font will automatically appear in the NiceDamage selection menu.
+For managing multiple custom fonts, use the [SharedMedia](https://www.curseforge.com/wow/addons/sharedmedia) addon. Once you register a font there, NiceDamage will automatically list it in the selection menu.
 
 ---
 
 ## Troubleshooting
 
-* **Font hasn't changed:** You must log out to the character screen and log back in. The 3D engine cannot swap font files while you are inside the world.
-* **I see the default font again:** This happens if you were using a font from another addon and that addon was deleted or disabled.
-* **I have issues with ElvUI:** In World of Warcraft, the last addon to load applies its changes. ElvUI often overwrites NiceDamage. To resolve this:
-    * **Option A:** Disable ElvUI's "CombatText Font" in the ElvUI settings.
-    * **Option B:** Keep NiceDamage enabled (to load the font) and manually select "Pepsi Modern" within ElvUI's own combat text settings.
-* **Question Marks (???) for numbers:** This occurs if the selected font doesn't support those characters (Most likely to happen on non-Latin clients like RU/CN/KR). Please select a universal font like *Roboto* or *Expressway*.
+* **Font hasn't changed:** Ensure you have logged out to the character selection screen. The 3D world engine cannot swap the base font file while the world is rendered.
+* **Gravity/Scale isn't working:** Check if another addon (like ElvUI or MikScrollingCombatText) is controlling your combat text.
+* **Question Marks (???) for numbers:** The font you selected does not support your language's character set (e.g., using a Latin-only font on a Russian or Asian client). Switch to **Roboto Bold** or **Expressway** for better character support.
+* **ElvUI Conflicts:** To use NiceDamage with ElvUI:
+    * **Option A:** Disable ElvUI's "CombatText" module.
+    * **Option B:** Keep NiceDamage enabled to "register" the font, then select that font name inside ElvUI's font settings.
 
 ---
 
 ## Credits
-This is a modern "Reloaded" version maintained by **Azaiko**. 
-Original addon concept by the creators of the original NiceDamage.
-Inspired by the legacy of the Pepsi combat text style used by the WoW community for over a decade.
+Maintained by **Azaiko**. 
+Inspired by the legacy of the original NiceDamage and the Pepsi combat text style used by the community for over a decade.

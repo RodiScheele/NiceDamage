@@ -1,3 +1,7 @@
+2.3.0
+- Added some font customization options (outline, monochrome, shadow, gravity, ramp)
+- Add /nd and /nicedamage chat commands
+
 2.2.1
 - Added support for adding a custom font that won't be overwritten during updates
 

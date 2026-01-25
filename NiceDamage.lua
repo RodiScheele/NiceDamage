@@ -2,7 +2,7 @@ local addonName, addon, categoryId, frame = ...
 local LSM = LibStub("LibSharedMedia-3.0")
 
 -- Create the Ace3 Addon object
-LibStub("AceAddon-3.0"):NewAddon(addon, addonName, "AceEvent-3.0")
+LibStub("AceAddon-3.0"):NewAddon(addon, addonName, "AceEvent-3.0", "AceConsole-3.0")
 
 function addon:OnInitialize()
     -- Determine if the client is Russian to set default font accordingly
@@ -62,6 +62,10 @@ function addon:OnInitialize()
     -- We use the full name here for the display label in the menu
     frame, categoryId = LibStub("AceConfigDialog-3.0"):AddToBlizOptions(addonName, "NiceDamage (Reloaded)", nil)
 
+    -- Register chat commands for easy access
+    self:RegisterChatCommand("nd", "OpenConfig")
+    self:RegisterChatCommand("nicedamage", "OpenConfig")
+    
     -- Apply fonts immediately on load
     self:ApplySystemFonts()
 end
