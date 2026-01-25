@@ -25,6 +25,7 @@ function addon:OnInitialize()
             updateWorldText = true, -- Combat Damage Number Font
             fontName = defaultFont,
             fontSize = 1,
+            fontGravity = 0.5,
             -- Floating text font
             updateUiText = false,   -- Scrolling Combat Text Font
             uiFont = defaultFont,
@@ -82,11 +83,11 @@ function addon:ApplySystemFonts()
         -- 1. WORLD TEXT (Damage/Healing numbers floating in the 3D world)
         if self.db.profile.updateWorldText then
             DAMAGE_TEXT_FONT = fontPath
-            if GetCVar("WorldTextScale") then
-                SetCVar("WorldTextScale", sizeScale)
-            end
+            SetCVar("WorldTextScale", sizeScale)
+            -- Apply the gravity setting from the database
+            SetCVar("WorldTextGravity", tostring(self.db.profile.fontGravity or 0.5))
         end
-        
+                
         -- 2. UI TEXT (Damage received, scrolling combat text on player frame)
         if self.db.profile.updateUiText then
 

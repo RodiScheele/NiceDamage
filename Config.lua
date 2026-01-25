@@ -121,6 +121,18 @@ function addon:GetOptions()
                         end,
                         order = 3,
                     },
+                    fontGravity = {
+                        type = "range",
+                        name = "Combat Text Gravity",
+                        desc = "Controls how fast damage numbers fall. 0.5 is default.",
+                        min = -10, max = 10, step = 0.5,
+                        get = function() return self.db.profile.fontGravity end,
+                        set = function(_, v) 
+                            self.db.profile.fontGravity = v
+                            self:ApplySystemFonts() 
+                        end,
+                        order = 4,
+                    },
                 },
             },
             uiFontGroup = {
