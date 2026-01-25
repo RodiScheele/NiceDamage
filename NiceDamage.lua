@@ -28,7 +28,6 @@ function addon:OnInitialize()
             -- Floating text font
             updateUiText = false,   -- Scrolling Combat Text Font
             uiFont = defaultFont,
-            uiFontSize = 18,
             uiOutline = "OUTLINE",
             uiMonochrome = false,
             uiShadowOffset = 1,

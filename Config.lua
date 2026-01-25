@@ -113,7 +113,7 @@ function addon:GetOptions()
                         type = "range",
                         name = "Combat Damage Scale (World)",
                         desc = "Adjust the scale of numbers over heads. 1.0 is default.",
-                        min = 0.5, max = 2.5, step = 0.1,
+                        min = 0.5, max = 5, step = 0.1,
                         get = function() return self.db.profile.fontSize end,
                         set = function(_, v) 
                             self.db.profile.fontSize = v
@@ -158,18 +158,6 @@ function addon:GetOptions()
                         end,
                         order = 2,
                     },
-                    uiFontSize = {
-                        type = "range",
-                        name = "Scrolling Text Size (UI)",
-                        desc = "Adjust the pixel size of incoming damage/heals.",
-                        min = 10, max = 50, step = 1,
-                        get = function() return self.db.profile.uiFontSize end,
-                        set = function(_, v) 
-                            self.db.profile.uiFontSize = v
-                            self:ApplySystemFonts() 
-                        end,
-                        order = 3,
-                    },
                     uiMonochrome = {
                         type = "toggle",
                         name = "Monochrome",
@@ -179,7 +167,7 @@ function addon:GetOptions()
                             self.db.profile.uiMonochrome = v
                             self:ApplySystemFonts() 
                         end,
-                        order = 4,
+                        order = 3,
                     },
                     uiShadowOffset = {
                         type = "range",
@@ -191,7 +179,7 @@ function addon:GetOptions()
                             self.db.profile.uiShadowOffset = v
                             self:ApplySystemFonts() 
                         end,
-                        order = 5,
+                        order = 4,
                     },
                 }
             }
