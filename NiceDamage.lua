@@ -105,7 +105,14 @@ function addon:ApplySystemFonts()
                 else
                     flags = flags .. ", MONOCHROME"
                 end
+            else -- If MONOCHROME is not enabled add SLUG
+                if flags == "" then
+                    flags = "SLUG"
+                else
+                    flags = flags .. ", SLUG"
+                end
             end
+
 
             -- Fetch the specific UI font path
             local uiFontPath = LSM:Fetch("font", self.db.profile.uiFont)

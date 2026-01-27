@@ -2,7 +2,7 @@
 
 **NiceDamage (Reloaded)** is a lightweight combat text font addon for World of Warcraft that allows you to customize the appearance, size, and animation behavior of damage and healing numbers.
 
-It modernizes the classic "Pepsi" combat text style by adding a configuration menu, real-time CVar scaling, and support for high-visibility fonts and custom animations.
+It modifies Blizzard's implementation of combat text fonts. Meaning it should not have any performance impact.
 
 ---
 
@@ -61,7 +61,7 @@ For managing multiple custom fonts, use the [SharedMedia](https://www.curseforge
 
 ## Troubleshooting
 
-* **Font hasn't changed:** Ensure you have logged out to the character selection screen. The 3D world engine cannot swap the base font file while the world is rendered.
+* **Font hasn't changed:** You need to log out to the character selection screen and log back in. The 3D world engine cannot swap the base font file while ingame.
 * **Gravity/Scale isn't working:** Check if another addon (like ElvUI or MikScrollingCombatText) is controlling your combat text.
 * **Question Marks (???) for numbers:** The font you selected does not support your language's character set (e.g., using a Latin-only font on a Russian or Asian client). Switch to **Roboto Bold** or **Expressway** for better character support.
 * **ElvUI Conflicts:** To use NiceDamage with ElvUI:

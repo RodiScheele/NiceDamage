@@ -1,3 +1,6 @@
+2.3.1
+- Add SLUG flag to fonts when MONOCHROME is not selected, this improves font rendering for floating combat text.
+
 2.3.0
 - Added some font customization options (outline, monochrome, shadow, gravity, ramp)
 - Add /nd and /nicedamage chat commands
