@@ -65,8 +65,8 @@ For managing multiple custom fonts, use the [SharedMedia](https://www.curseforge
 * **Gravity/Scale isn't working:** Check if another addon (like ElvUI or MikScrollingCombatText) is controlling your combat text.
 * **Question Marks (???) for numbers:** The font you selected does not support your language's character set (e.g., using a Latin-only font on a Russian or Asian client). Switch to **Roboto Bold** or **Expressway** for better character support.
 * **ElvUI Conflicts:** To use NiceDamage with ElvUI:
-    * **Option A:** Disable ElvUI's "CombatText" module.
-    * **Option B:** Keep NiceDamage enabled to "register" the font, then select that font name inside ElvUI's font settings.
+    * **Option A:** Disable ElvUI's "CombatText" module. Found in ElvUI settings under General > Fonts > Combat Font.
+    * **Option B:** Keep NiceDamage enabled to "register" the font in your library, then select that font name inside ElvUI's font settings. Found in ElvUI settings under General > Fonts > Combat Font.
 
 ---
 
