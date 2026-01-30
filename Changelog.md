@@ -1,3 +1,6 @@
+2.3.2
+- Add Alte Haas Grotesk font
+
 2.3.1
 - Add SLUG flag to fonts when MONOCHROME is not selected, this improves font rendering for floating combat text.
 
