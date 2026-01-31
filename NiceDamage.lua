@@ -88,10 +88,10 @@ function addon:ApplySystemFonts()
         -- 1. WORLD TEXT (Damage/Healing numbers floating in the 3D world)
         if self.db.profile.updateWorldText then
             DAMAGE_TEXT_FONT = fontPath
-            SetCVar("WorldTextScale", sizeScale)
+            SetCVar("WorldTextScale_v2", sizeScale)
             -- Apply the gravity setting from the database
-            SetCVar("WorldTextGravity", tostring(self.db.profile.fontGravity or 0.5))
-            SetCVar("WorldTextRampDuration", tostring(self.db.profile.fontRampDuration or 1.0))
+            SetCVar("WorldTextGravity_v2", tostring(self.db.profile.fontGravity or 0.5))
+            SetCVar("WorldTextRampDuration_v2", tostring(self.db.profile.fontRampDuration or 1.0))
         end
                 
         -- 2. UI TEXT (Damage received, scrolling combat text on player frame)

@@ -1,3 +1,6 @@
+2.3.3
+- Update CVars to v2
+
 2.3.2
 - Add Alte Haas Grotesk font
 
