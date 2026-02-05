@@ -15,7 +15,7 @@
 ## Category-zhCN: 战斗
 ## Category-zhTW: 戰鬥
 
-## Version: 2.3.3
+## Version: 2.3.4
 
 ## IconTexture: Interface\ICONS\Inv_knife_1H_Rogue_C_01
 
