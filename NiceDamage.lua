@@ -68,6 +68,8 @@ function addon:OnInitialize()
     self:RegisterChatCommand("nicedamage", "OpenConfig")
     
     -- Apply fonts immediately on load
+    self:RegisterEvent("PLAYER_ENTERING_WORLD", "ApplySystemFonts")
+    LSM.RegisterCallback(self, "LibSharedMedia_Registered", "ApplySystemFonts") 
     self:ApplySystemFonts()
 end
 

@@ -1,6 +1,9 @@
+2.3.5
+- Fix for sharedmedia not saving custom font settings
+
 2.3.4
 - Fix font size CVar not applying in Classic versions
-- 
+  
 2.3.3
 - Update CVars to v2
 
