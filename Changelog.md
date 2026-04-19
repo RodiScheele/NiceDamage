@@ -1,3 +1,6 @@
+2.3.6
+- Retail 12.0.5 release
+
 2.3.5
 - Fix for sharedmedia not saving custom font settings
 
