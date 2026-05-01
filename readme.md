@@ -46,6 +46,8 @@ Access the settings panel using:
 
 For managing custom fonts, use the [SharedMedia](https://www.curseforge.com/wow/addons/sharedmedia) addon. Once you register a font there, NiceDamage will automatically list it in the selection menu.
 
+Alternatively, you can add your own font files directly to the `Fonts` folder in the NiceDamage addon directory. Supported formats are `.ttf` and `.otf`. Replace a font file with the same name to override it, but be aware that updates to the addon may overwrite custom files if they share the same name.
+
 ---
 
 ## Troubleshooting

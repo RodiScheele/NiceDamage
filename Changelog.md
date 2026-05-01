@@ -1,3 +1,6 @@
+2.4.0
+- Updated libraries, removed customfont via own font
+
 2.3.7
 - Retail 12.0.5 release
 
