@@ -21,7 +21,6 @@ function addon:OnInitialize()
         },
         profile = {
             enabled = true,
-            loadCustomFont = false,
             -- Combat font
             updateWorldText = true, -- Combat Damage Number Font
             fontName = defaultFont,
