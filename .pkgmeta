@@ -1,5 +1,7 @@
 package-as: NiceDamage
 
+manual-changelog: Changelog.md
+
 ignore:
   - .gitignore
   - .vscode
