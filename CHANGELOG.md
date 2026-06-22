@@ -1,4 +1,7 @@
-2.4.0
+2.5.1
+- Fix issue with font size not applying in Classic versions
+
+2.5.0
 - Updated libraries, removed customfont via own font
 
 2.3.7
