@@ -1,3 +1,7 @@
+2.6.0
+- Sets default font for German and Spanish clients to Bangers due to missing characters in Pepsi
+- Updated toc versions for retail and TBC clients
+
 2.5.1
 - Fix issue with font size not applying in Classic versions
 
