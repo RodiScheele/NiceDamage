@@ -1,3 +1,6 @@
+2.6.1
+- Reverted default font for German and Spanish
+
 2.6.0
 - Sets default font for German and Spanish clients to Bangers due to missing characters in Pepsi
 - Updated toc versions for retail and TBC clients

@@ -23,8 +23,7 @@ local myFonts = {
 
 function addon:RegisterFonts()
     local prefix = "Interface\\AddOns\\NiceDamage\\fonts\\"
-    local locale = GetLocale()
-    local isRussian = (locale == "ruRU")
+    local isRussian = (GetLocale() == "ruRU")
 
     local mask = (LSM.LOCALE_BIT_koKR or 1) + 
                  (LSM.LOCALE_BIT_ruRU or 2) + 
