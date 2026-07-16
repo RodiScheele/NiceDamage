@@ -1,3 +1,6 @@
+3.0.0
+- Add new pepsi.otf font with missing characters for German and Spanish clients and cyrillic support for Russian clients
+
 2.6.1
 - Reverted default font for German and Spanish
 
