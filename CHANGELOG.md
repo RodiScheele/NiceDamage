@@ -1,4 +1,4 @@
-3.1.0
+3.1.1
 - Download libs from wowace.com using BigWigs packager instead of bundling them with the addon
 
 3.0.0
