@@ -41,3 +41,6 @@ luac.out
 
 # Ignore vscode folder
 .vscode/
+
+# Libraries are fetched by packager externals
+libs/
