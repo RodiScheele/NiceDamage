@@ -1,3 +1,6 @@
+3.1.2
+- Add toc for WoW Forever beta
+
 3.1.1
 - Download libs from wowace.com using BigWigs packager instead of bundling them with the addon
 
