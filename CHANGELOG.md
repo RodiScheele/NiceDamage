@@ -1,5 +1,8 @@
-3.1.2
+3.1.3
 - Add toc for WoW Forever beta
+
+3.1.2
+- Bump toc for classic
 
 3.1.1
 - Download libs from wowace.com using BigWigs packager instead of bundling them with the addon
