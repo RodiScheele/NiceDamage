@@ -1,0 +1,78 @@
+name: Update WoW interface versions
+
+on:
+  schedule:
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-interface:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Update interface versions
+        uses: p3lim/toc-interface-updater@v4
+        with:
+          flavor: |
+            retail
+            forever
+            mists
+            wrath
+            tbc
+            vanilla
+
+      - name: Bump addon version and changelog
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          previous_interface="$(git show HEAD:NiceDamage.toc | sed -n 's/^## Interface:[[:space:]]*//p')"
+          current_interface="$(sed -n 's/^## Interface:[[:space:]]*//p' NiceDamage.toc)"
+
+          if [[ -z "$current_interface" ]]; then
+            echo "::error file=NiceDamage.toc::No interface line found"
+            exit 1
+          fi
+
+          if [[ "$previous_interface" == "$current_interface" ]]; then
+            echo "Interface versions are unchanged; no addon version bump needed."
+            exit 0
+          fi
+
+          current_version="$(sed -n 's/^## Version:[[:space:]]*//p' NiceDamage.toc)"
+          if [[ ! "$current_version" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+            echo "::error file=NiceDamage.toc::Expected a three-part addon version"
+            exit 1
+          fi
+
+          major="${BASH_REMATCH[1]}"
+          minor="${BASH_REMATCH[2]}"
+          patch="${BASH_REMATCH[3]}"
+          next_version="${major}.${minor}.$((10#$patch + 1))"
+
+          if grep -qxF "$next_version" CHANGELOG.md; then
+            echo "::error file=CHANGELOG.md::Version $next_version already exists"
+            exit 1
+          fi
+
+          sed -i "s/^## Version:.*/## Version: ${next_version}/" NiceDamage.toc
+          temp_changelog="$(mktemp)"
+          {
+            printf '%s\n' "$next_version" '- Update WoW interface versions' ''
+            cat CHANGELOG.md
+          } > "$temp_changelog"
+          mv "$temp_changelog" CHANGELOG.md
+
+      - name: Create or update pull request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          title: Update WoW interface versions
+          commit-message: Update WoW interface versions
+          branch: auto/update-wow-interface-versions
+          delete-branch: true
